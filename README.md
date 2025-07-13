@@ -66,6 +66,9 @@ src/
 
 ## 🚀 Running the Application
 
+> **Compatible Node Versions:** Recommended Node.js versions are **20.x** and **22.x**.
+> If you're using [nvm](https://github.com/nvm-sh/nvm), you can run `nvm use` to automatically switch to the correct version (based on the included `.nvmrc` file).
+
 ### 1. Clone the repo
 ```bash
 git clone https://github.com/your-username/fakestore-ui.git

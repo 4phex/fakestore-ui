@@ -9,6 +9,9 @@
     "preview": "vite preview",
     "typecheck": "tsc --noEmit"
   },
+  "engines": {
+    "node": ">=20.19.3 <=22.17.0"
+  },
   "dependencies": {
     "@mantine/core": "8.1.2",
     "@mantine/form": "^8.1.3",

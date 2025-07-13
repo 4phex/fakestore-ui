@@ -31,10 +31,14 @@ const LoginForm = () => {
       password: '',
     },
     validate: {
-      email: (value) =>
-        /^\S+@\S+\.\S+$/.test(value) ? null : 'Invalid email format',
-      password: (value) =>
-        value.length >= 6 ? null : 'Password must be at least 6 characters',
+      email: (value) => {
+        if (!value) return 'Email is required';
+        return /^\S+@\S+\.\S+$/.test(value) ? null : 'Invalid email format';
+      },
+      password: (value) => {
+        if (!value) return 'Password is required';
+        return value.length >= 6 ? null : 'Password must be at least 6 characters';
+      },
     },
   });
 
@@ -60,7 +64,6 @@ const LoginForm = () => {
           label="Email"
           placeholder="you@example.com"
           {...form.getInputProps('email')}
-          required
         />
 
         {/* Password input field */}
@@ -69,7 +72,6 @@ const LoginForm = () => {
           placeholder="Your password"
           mt="md"
           {...form.getInputProps('password')}
-          required
         />
 
         {/* Error notification if login fails */}
