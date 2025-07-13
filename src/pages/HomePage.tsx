@@ -39,6 +39,10 @@ const HomePage = () => {
       {/* Visual separator */}
       <Divider mb="md" />
 
+      <Text size="sm" my="sm"> 
+        {filtered.length} RESULTS FOUND
+      </Text>
+
       {/* Display filtered product cards */}
       <ProductGrid products={filtered} />
     </>

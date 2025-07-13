@@ -1,21 +1,36 @@
-// src/components/Product/ProductCard.tsx
 import { Card, Text, Image, Box, Divider, Flex } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
 import { formatUSD } from '../../utils/formatters';
-import { useProductStore } from '../../stores/productStore';
+import { Product, useProductStore } from '../../stores/productStore';
 
 type ProductCardProps = {
-  product: any;
+  product: Product;
 };
 
+/**
+ * ProductCard Component
+ *
+ * Displays an individual product as a clickable card with an image, title, category, and price.
+ * On click, it sets the product in the store and navigates to the product detail page.
+ *
+ * @component
+ * @param {ProductCardProps} props - The props object
+ * @param {object} props.product - Product data to render
+ * @returns {JSX.Element} A styled product card
+ */
 const ProductCard = ({ product }: ProductCardProps) => {
   const navigate = useNavigate();
   const setProduct = useProductStore((state) => state.setCurrentProduct);
 
+  /**
+   * Handles click event:
+   * - Sets the current product in global store
+   * - Navigates to the product detail page
+   */
   const handleClick = () => {
     setProduct(product);
-    navigate(`/product/${product.id}`)
-  }
+    navigate(`/product/${product.id}`);
+  };
 
   return (
     <Card
@@ -25,13 +40,13 @@ const ProductCard = ({ product }: ProductCardProps) => {
       style={{
         cursor: 'pointer',
         transition: 'transform 0.2s ease',
-         aspectRatio: '1 / 1'
+        aspectRatio: '1 / 1',
       }}
-      onClick={() => handleClick()}
+      onClick={handleClick}
       onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.01)')}
       onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
     >
-      {/* Product image with fixed aspect ratio */}
+      {/* Product image with fixed aspect ratio and centered alignment */}
       <Box
         style={{
           position: 'relative',
@@ -55,26 +70,25 @@ const ProductCard = ({ product }: ProductCardProps) => {
         />
       </Box>
 
-      <Divider mt="md"/>
+      {/* Divider separating image from content */}
+      <Divider mt="md" />
 
-      {/* Card content */}
+      {/* Product information section */}
       <Box mt="sm">
+        {/* Category and price in a row */}
         <Flex justify="space-between" align="center">
-            {/* Subtext like category */}
-            <Text size="xs" c="dimmed">
-                {product.category}
-            </Text>
-            {/* Price */}
-            <Text fw={600} size="sm" style={{color: "#253746"}}> 
-                {formatUSD(product.price)}
-            </Text>
+          <Text size="xs" c="dimmed">
+            {product.category}
+          </Text>
+          <Text fw={600} size="sm" style={{ color: '#253746' }}>
+            {formatUSD(product.price)}
+          </Text>
         </Flex>
 
-        {/* Product title */}
-        <Text fw={600} size="sm" style={{color: "#253746"}} truncate="end">
+        {/* Product title truncated to one line */}
+        <Text fw={600} size="sm" style={{ color: '#253746' }} truncate="end">
           {product.title}
         </Text>
-
       </Box>
     </Card>
   );

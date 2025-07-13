@@ -5,7 +5,7 @@ type User = {
   id: number;
   email: string;
   username: string;
-  password: string;
+  // password intentionally not stored
   phone: string;
   __v: number;
   name: {
@@ -25,7 +25,7 @@ type User = {
 };
 
 type UserState = {
-  user: User | null;
+  user: Omit<User, 'password'> | null;
   setUser: (user: User) => void;
   clearUserState: () => void;
 };
@@ -34,7 +34,10 @@ export const useUserStore = create<UserState>()(
   persist(
     (set) => ({
       user: null,
-      setUser: (user) => set({ user }),
+      setUser: (user) => {
+        const { password, ...userWithoutPassword } = user;
+        set({ user: userWithoutPassword });
+      },
       clearUserState: () => set({ user: null }),
     }),
     {
