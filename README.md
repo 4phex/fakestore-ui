@@ -78,8 +78,6 @@ cd fakestore-ui
 ### 2. Install dependencies
 ```bash
 npm install
-# or
-yarn install
 ```
 
 ### 3. Run the dev server
