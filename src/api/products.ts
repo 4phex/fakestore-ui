@@ -3,7 +3,8 @@
  * @returns Promise resolving to an array of products.
  */
 export const fetchAllProducts = async () => {
-  const response = await fetch('https://fakestoreapi.com/products');
+  const BASE_URL = import.meta.env.VITE_API_URL;
+  const response = await fetch(`${BASE_URL}/products`);
 
   if (!response.ok) {
     throw new Error('Failed to fetch products');

@@ -7,8 +7,10 @@
  * @returns An object containing a success flag and either the user object or an error message
  */
 export const loginUser = async (email: string, password: string) => {
+  const BASE_URL = import.meta.env.VITE_API_URL;
+  
   try {
-    const response = await fetch('https://fakestoreapi.com/users');
+    const response = await fetch(`${BASE_URL}/users`);
 
     // Handle failed network response
     if (!response.ok) {

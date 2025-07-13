@@ -20,13 +20,8 @@ const HomePage = () => {
     <>
       {/* Centered page title */}
       <Center>
-        <Title ta="center">Fake Store Home</Title>
+        <Title ta="center">Fake Store</Title>
       </Center>
-
-      {/* Subtitle below the title */}
-      <Text size="sm" mt="sm" ta="center" c="dimmed">
-        Search for products
-      </Text>
 
       {/* Search input for product filtering */}
       <Input
